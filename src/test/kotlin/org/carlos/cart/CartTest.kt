@@ -1,6 +1,5 @@
 package org.carlos.cart
 
-import kotlinx.coroutines.test.runTest
 import org.carlos.cart.bill.BillCalculator
 import org.carlos.cart.bill.BillCalculatorImpl
 import org.carlos.cart.bill.BillRepository
@@ -67,7 +66,7 @@ class CartTest {
     }
 
     @Test
-    fun `should add product to cart`() = runTest {
+    fun `should add product to cart`() {
         cart.add(banana.id, 1)
         assertEqualsCartBill(
             Bill(
@@ -81,7 +80,7 @@ class CartTest {
     }
 
     @Test
-    fun `should increase product quantity in cart when the same product is added`() = runTest {
+    fun `should increase product quantity in cart when the same product is added`()  {
         cart.add(banana.id)
         cart.add(orange.id)
         assertEqualsCartBill(
@@ -112,7 +111,7 @@ class CartTest {
     }
 
     @Test
-    fun `should increase product in cart with a specific amount`() = runTest {
+    fun `should increase product in cart with a specific amount`()  {
         val quantityOfOranges = 100
         val orangesPrice = orange.pricePerUnit * quantityOfOranges
         val expectedTotal = orangesPrice + banana.pricePerUnit
@@ -133,7 +132,7 @@ class CartTest {
     }
 
     @Test
-    fun `should remove from cart altogether when reducing and only one is left`() = runTest {
+    fun `should remove from cart altogether when reducing and only one is left`() {
         cart.add(banana.id)
         cart.add(orange.id, 2)
         cart.reduce(banana.id)
@@ -151,7 +150,7 @@ class CartTest {
     }
 
     @Test
-    fun `should reduce product quantity in cart`() = runTest {
+    fun `should reduce product quantity in cart`() {
         val billQuantity = 50
         val finalCost = orange.pricePerUnit * billQuantity
         cart.add(orange.id, 100)
@@ -170,7 +169,7 @@ class CartTest {
     }
 
     @Test
-    fun `should remove the product altogether from the cart`() = runTest {
+    fun `should remove the product altogether from the cart`() {
         cart.add(banana.id)
         cart.add(orange.id, 10)
         cart.remove(orange.id)
@@ -187,7 +186,7 @@ class CartTest {
 
 
     @Test
-    fun `should apply percentage off cart discount total when discount is available`() = runTest {
+    fun `should apply percentage off cart discount total when discount is available`() {
         cartPromotionsRepo.add(listOf(halfPrice, fiftyTwoPenceOff))
         val totalBeforeDiscount = banana.pricePerUnit + orange.pricePerUnit
         val finalCost = totalBeforeDiscount / 2
@@ -211,7 +210,7 @@ class CartTest {
     }
 
     @Test
-    fun `should apply amount off cart discount total when discount is available`() = runTest {
+    fun `should apply amount off cart discount total when discount is available`() {
         cartPromotionsRepo.add(listOf(halfPrice, fiftyTwoPenceOff))
         val totalBeforeDiscounts = banana.pricePerUnit + orange.pricePerUnit
         val finalCost = totalBeforeDiscounts - 0.52.asMoney
@@ -235,7 +234,7 @@ class CartTest {
     }
 
     @Test
-    fun `should always apply the last cart promotion added`() = runTest {
+    fun `should always apply the last cart promotion added`() {
         val totalBeforeDiscount = banana.pricePerUnit + orange.pricePerUnit
         val finalCost = totalBeforeDiscount / 2
         cart.addCartPromotion(fiftyTwoPenceOff.id)

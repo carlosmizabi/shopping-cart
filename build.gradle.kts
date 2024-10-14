@@ -10,10 +10,7 @@ repositories {
 }
 
 dependencies {
-    val coroutines = "1.7.3"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines")
     testImplementation(kotlin("test"))
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("io.mockk:mockk:1.13.13")
 }
