@@ -1,6 +1,6 @@
 # Notes
 
-Best way to run it is by running the tests.
+Best way to try it is by running the tests.
 
 `./gradlew test`
 
@@ -10,6 +10,6 @@ or
 
  `./gradlew koverHtmlReport`
 
-#### report from at:
+#### report at:
 
-`build/reports/kover/html/index.html`
+`./build/reports/kover/html/index.html`
